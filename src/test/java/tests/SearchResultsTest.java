@@ -1,3 +1,5 @@
+package tests;
+
 import com.google.common.collect.Comparators;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -14,14 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class MyFirstTest {
-
-    private static WebDriver driver;
-
-    @BeforeTest
-    public static void start() {
-        driver = new ChromeDriver();
-    }
+public class SearchResultsTest extends TestBase{
 
     @Test
     public void testSortingByPrice() {
@@ -48,7 +43,7 @@ public class MyFirstTest {
         //I've tried another solution, but in this case I received the wrong price.
         //Therefore I've decided to live Thread.sleep, as a quick and working solution.
         try {
-            Thread.sleep(3000);
+            Thread.sleep(SLEEP_TIME);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -59,9 +54,5 @@ public class MyFirstTest {
         Comparators.isInOrder(listOfPrices, Comparator.naturalOrder());
     }
 
-    @AfterTest
-    public static void stop() {
-        driver.quit();
-    }
 
 }
